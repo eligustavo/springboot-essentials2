@@ -1,0 +1,13 @@
+server:
+  error:
+    include-stacktrace: never
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/anime?useSSL=false&createDatabaseIfNotExists=true
+    username: postgres
+    password: 148753269
+  jpa:
+    hibernate:
+      ddl-auto: update
