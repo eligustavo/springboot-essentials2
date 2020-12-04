@@ -5,16 +5,19 @@ import com.example.springessentials.requests.AnimePostRequestBody;
 import com.example.springessentials.requests.AnimePutRequestBody;
 import com.example.springessentials.service.AnimeService;
 import com.example.springessentials.util.DateUtil;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Log4j2
 @RestController
 @RequestMapping("animes")
 public class AnimeController {
@@ -25,9 +28,9 @@ public class AnimeController {
     private AnimeService animeService;
 
     @GetMapping
-    public ResponseEntity<List<Anime>> list() {
-        System.out.println(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
-        return new ResponseEntity<>(animeService.listAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Anime>> list(Pageable pageable) {
+       log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+        return ResponseEntity.ok(animeService.listAll(pageable));
     }
 
     @GetMapping(path = "/{id}")
@@ -40,10 +43,8 @@ public class AnimeController {
         return ResponseEntity.ok(animeService.findByName(name));
     }
 
-
-
     @PostMapping
-    public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody) {
+    public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody animePostRequestBody) {
         return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
     }
 
