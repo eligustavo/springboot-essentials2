@@ -1,6 +1,10 @@
 package com.example.springessentials.service;
 
 import com.example.springessentials.domain.Anime;
+<<<<<<< HEAD
+=======
+import com.example.springessentials.exceptions.BadRequestException;
+>>>>>>> 750fd3ede00f34e39365a393a9c6489ade0b97f2
 import com.example.springessentials.mapper.AnimeMapper;
 import com.example.springessentials.repository.AnimeRepository;
 import com.example.springessentials.requests.AnimePostRequestBody;
@@ -9,10 +13,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+<<<<<<< HEAD
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+=======
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+>>>>>>> 750fd3ede00f34e39365a393a9c6489ade0b97f2
 
 import java.util.List;
 
@@ -21,6 +30,7 @@ import java.util.List;
 public class AnimeService {
 
 
+<<<<<<< HEAD
     private final AnimeRepository animeRepository;
 
     public Page<Anime> listAll(Pageable pageable) {
@@ -29,6 +39,14 @@ public class AnimeService {
 
     public List<Anime> listAllNonPageable() {
         return animeRepository.findAll();
+=======
+    public Page<Anime> listAll(Pageable  pageable) {
+        return animeRepository.findAll(pageable);
+    }
+
+    public List<Anime> findByName(String name) {
+        return animeRepository.findByName(name);
+>>>>>>> 750fd3ede00f34e39365a393a9c6489ade0b97f2
     }
 
     public List<Anime> findByNome(String nome) {
@@ -37,7 +55,7 @@ public class AnimeService {
 
     public Anime findByIdOrThrowBadRequestException(long id) {
         return animeRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime não encontrado"));
+                .orElseThrow(() -> new BadRequestException("Anime não encontrado"));
     }
 
     @Transactional

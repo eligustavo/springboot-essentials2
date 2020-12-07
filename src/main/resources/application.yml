@@ -4,9 +4,15 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/anime?useSSL=false&createDatabaseIfNotExists=true
+    url: jdbc:postgresql://localhost:5432/anime?createDatabaseIfNotExist=true
     username: postgres
     password: 148753269
   jpa:
     hibernate:
       ddl-auto: update
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG

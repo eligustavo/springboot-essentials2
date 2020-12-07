@@ -9,6 +9,10 @@ import java.util.List;
 @Repository
 public interface AnimeRepository extends JpaRepository<Anime, Long> {
 
+<<<<<<< HEAD
     List<Anime> findByNome(String nome);
+=======
+    List<Anime> findByName(String name);
+>>>>>>> 750fd3ede00f34e39365a393a9c6489ade0b97f2
 
 }
