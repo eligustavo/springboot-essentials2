@@ -2,7 +2,6 @@ server:
   error:
     include-stacktrace: never
 
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/anime?useSSL=false&createDatabaseIfNotExists=true
