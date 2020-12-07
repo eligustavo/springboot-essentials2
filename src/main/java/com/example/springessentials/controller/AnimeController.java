@@ -5,10 +5,7 @@ import com.example.springessentials.requests.AnimePostRequestBody;
 import com.example.springessentials.requests.AnimePutRequestBody;
 import com.example.springessentials.service.AnimeService;
 import com.example.springessentials.util.DateUtil;
-<<<<<<< HEAD
 import lombok.RequiredArgsConstructor;
-=======
->>>>>>> 750fd3ede00f34e39365a393a9c6489ade0b97f2
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +21,6 @@ import java.util.List;
 @Log4j2
 @RestController
 @RequestMapping("animes")
-@Log4j2
 @RequiredArgsConstructor
 public class AnimeController {
 
@@ -35,19 +31,14 @@ public class AnimeController {
 
     @GetMapping
     public ResponseEntity<Page<Anime>> list(Pageable pageable) {
-<<<<<<< HEAD
         log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAll(pageable));
     }
 
     @GetMapping(path = "/all")
-    public ResponseEntity<List<Anime>> list() {
+    public ResponseEntity<List<Anime>> listAll() {
         log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAllNonPageable());
-=======
-       log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
-        return ResponseEntity.ok(animeService.listAll(pageable));
->>>>>>> 750fd3ede00f34e39365a393a9c6489ade0b97f2
     }
 
     @GetMapping(path = "/{id}")
@@ -56,13 +47,8 @@ public class AnimeController {
     }
 
     @GetMapping(path = "/find")
-<<<<<<< HEAD
-    public ResponseEntity<List<Anime>> findByName(@RequestParam String nome) {
+    public ResponseEntity<List<Anime>> findByNome(@RequestParam String nome) {
         return ResponseEntity.ok(animeService.findByNome(nome));
-=======
-    public ResponseEntity<List<Anime>> findByName(@RequestParam String name) {
-        return ResponseEntity.ok(animeService.findByName(name));
->>>>>>> 750fd3ede00f34e39365a393a9c6489ade0b97f2
     }
 
     @PostMapping
@@ -81,5 +67,4 @@ public class AnimeController {
         animeService.replace(animePutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }
