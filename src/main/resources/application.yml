@@ -3,6 +3,8 @@ server:
     include-stacktrace: never
 
 spring:
+  application:
+    name: springboot-essentials
   datasource:
     url: jdbc:postgresql://localhost:5432/anime?createDatabaseIfNotExist=true
     username: postgres
@@ -16,3 +18,13 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics, prometheus
+
+
+info:
+  app: Spring boot App by Elivelton Gustavo
